@@ -27,6 +27,7 @@ public class PlaySong extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        //Function To Play When App Closes
         super.onDestroy();
         mediaPlayer.stop();
         mediaPlayer.release();
@@ -35,7 +36,6 @@ public class PlaySong extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_song);
         textView = findViewById(R.id.textView);
@@ -43,6 +43,7 @@ public class PlaySong extends AppCompatActivity {
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
         seekBar = findViewById(R.id.seekBar);
+        //Design of Action bar
         ActionBar actionBar;
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF8C00"));
@@ -76,6 +77,7 @@ public class PlaySong extends AppCompatActivity {
                 mediaPlayer.seekTo(seekBar.getProgress());
             }
         });
+        //Updation of SeekBar Time To Time
         updateSeek = new Thread() {
             @Override
             public void run() {
@@ -95,6 +97,7 @@ public class PlaySong extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Switch of Play and Pause Image and function
                 if (mediaPlayer.isPlaying()) {
                     play.setImageResource(R.drawable.play);
                     mediaPlayer.pause();
