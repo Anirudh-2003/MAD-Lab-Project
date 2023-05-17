@@ -1,8 +1,6 @@
 package com.anirudh.isangeet;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,14 +11,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -44,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                         ArrayList<File> mySongs = fetchSongs(Environment.getExternalStorageDirectory());
                         String[] items = new String[mySongs.size()];
                         for (int i = 0; i < mySongs.size(); i++) {
-                            items[i] = mySongs.get(i).getName().replace(".mp3", "");
+                            items[i] = mySongs.get(i).getName().replace(".mp3", " ");
                         }
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.select_dialog_item, items);
@@ -63,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-
+                        Toast.makeText(MainActivity.this,"Runtime Permission Not Granted"+ msg, Toast.LENGTH_SHORT).show();
                     }
                     @Override
                     public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
